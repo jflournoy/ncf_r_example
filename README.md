@@ -19,13 +19,21 @@ How to set up R and R Studio on NCF
   ```
 5. Export the path to your user package directory while keeping the path to all the packages arleady installed on NCF.
   ```
-  export R_LIBS_USER=/ncf/mclaughlin/users/jflournoy/R_3.5.1_GCC:$R_LIBS_USER
+  export R_LIBS_USER=~/R_3.5.1_GCC_test/:$R_LIBS_USER
   ```
-6. Run R:
+6. Check to make sure it worked as expected.
+  ```
+  echo $R_LIBS_USER
+  ```
+  - You should see something like
+    ```
+    /users/jflournoy/R_3.5.1_GCC_test/:/n/helmod/apps/centos7/Core/R_packages/3.5.1-fasrc01
+    ```
+7. Run R:
   ```
   R
   ```
-7. Install `lavaan`
+8. Install `lavaan`
   ```
   devtools::install_github('yrosseel/lavaan')
   ```
