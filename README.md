@@ -55,3 +55,11 @@ exit
 [7287]
 ```
 
+Check out what's now in your personal package directory:
+```
+ jflournoy@ncflogin6:~
+[7287]ls ~/R_3.5.1_GCC/
+lavaan	mnormt	numDeriv  pbivnorm  tmvnsim
+```
+
+This is the package library we want to use for our R Studio instance, which I describe [here](README.r_studio.md).
