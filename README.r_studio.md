@@ -12,4 +12,6 @@
   - **location of your R_LIBS_USER folder:** ~/R_3.5.1_GCC/
 4. Leave the rest blank and click "Launch".
 
-This will take you to a new page where you will see a list of interactive apps on the left, and hopefully, in the main body of the page, you will see that your job is starting. Once it has started a button will appear saying "Connect to RStudio Server" and "Delete". Click the "Connect" button, which will open a new window onto your R Studio Server session. 
+This will take you to a new page where you will see a list of interactive apps on the left, and hopefully, in the main body of the page, you will see that your job is starting. Once it has started a button will appear saying "Connect to RStudio Server" and "Delete". Click the "Connect" button, which will open a new window onto your R Studio Server session.
+
+<img src='img/rstudio.png' style='width: 1%;' />
