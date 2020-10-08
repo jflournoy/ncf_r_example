@@ -44,3 +44,14 @@ gcc -I/n/helmod/apps/centos7/Core/curl/7.45.0-fasrc01/include -I/n/helmod/apps/c
 ```
 This is why it's important to specify the compiler too. Sometimes if you try to use a package that was compiled with a different version or type of compiler, it won't work.
 
+After install `lavaan` you can quit R, and exit the `srun` job, which will look something like this:
+```
+> q()
+Save workspace image? [y/n/c]: n
+ jflournoy@holy7c22412:~
+[7289]exit
+exit
+ jflournoy@ncflogin6:~
+[7287]
+```
+
