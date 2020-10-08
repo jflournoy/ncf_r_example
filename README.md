@@ -37,3 +37,10 @@ How to set up R and R Studio on NCF
   ```
   devtools::install_github('yrosseel/lavaan')
   ```
+  
+I use `devtools` here to install the most recent development version of `lavaan` directly from the github repository. You could just as easily use `install.packages`. You may have noticed that during the install come parts of the package were compiled using gcc:
+```
+gcc -I/n/helmod/apps/centos7/Core/curl/7.45.0-fasrc01/include -I/n/helmod/apps/centos7/Core/bzip2/1.0.6-fasrc01/include -I -I/n/helmod/apps/centos7/Core/pcre/8.37-fasrc02/include -I/n/helmod/apps/centos7/Core/readline/6.3-fasrc02/include -L/n/helmod/apps/centos7/Core/bzip2/1.0.6-fasrc01/lib -L/n/helmod/apps/centos7/Core/pcre/8.37-fasrc02/lib -L/n/helmod/apps/centos7/Core/curl/7.45.0-fasrc01/lib -L/n/helmod/apps/centos7/Core/readline/6.3-fasrc02/lib64 -std=gnu99 -I"/n/helmod/apps/centos7/Core/R_core/3.5.1-fasrc01/lib64/R/include" -DNDEBUG   -I/usr/local/include   -fpic  -g -O2  -c mnormt_init.c -o mnormt_init.o
+```
+This is why it's important to specify the compiler too. Sometimes if you try to use a package that was compiled with a different version or type of compiler, it won't work.
+
