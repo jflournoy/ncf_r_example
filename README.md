@@ -1,3 +1,5 @@
+Here are some [introductory slides](https://docs.google.com/presentation/d/1u9QSS6pNZYpxPMIqVZbyqU2lxGA2OK4QX7bDIpE32Yw/edit?usp=sharing).
+
 # Getting R and R Studio set up on NCF
 
 1. Log into ncf using your favorite terminal empulator.
