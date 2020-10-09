@@ -1,5 +1,4 @@
-# ncf_r_example
-How to set up R and R Studio on NCF
+# Getting R and R Studio set up on NCF
 
 1. Log into ncf using your favorite terminal empulator.
 2. Start an `srun` job so you can run R
