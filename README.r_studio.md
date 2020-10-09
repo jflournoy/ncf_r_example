@@ -17,3 +17,5 @@ This will take you to a new page where you will see a list of interactive apps o
 ![](img/rstudio.png)
 
 Now we're going to write a simple script to simulate some data, and estimate a model using those data. It's in this repository, and it's called [run_simulations.R](run_simulations.R).
+
+We will eventually run this script by submitting a shell script to the scheduler with `sbatch`. That shell script is in [batch_simulations.bash](batch_simulations.bash).
