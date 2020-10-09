@@ -4,47 +4,46 @@ Here are some [introductory slides](https://docs.google.com/presentation/d/1u9QS
 
 1. Log into NCF using your favorite terminal emulator.
 2. Clone this repository to your home directory
-  ```
-  cd ~
-  git clone https://github.com/jflournoy/ncf_r_example.git
-  ```
+    ```
+    cd ~
+    git clone https://github.com/jflournoy/ncf_r_example.git
+    ```
 3. Start an `srun` job so you can run R
-  ```
-  srun -p ncf -c 1 --mem 16G --time 4:00:00 --pty /bin/bash
-  ```
+    ```
+    srun -p ncf -c 1 --mem 16G --time 4:00:00 --pty /bin/bash
+    ```
   You should see something like:
-  ```
-  srun: job 4348303 queued and waiting for resources
-  srun: job 4348303 has been allocated resources
-
-  ```
+    ```
+    srun: job 4348303 queued and waiting for resources
+    srun: job 4348303 has been allocated resources
+    ```
 4. Make a new directory to keep your R pacakages (the name will make sense in a second).
-  ```
-  cd ~
-  mkdir R_3.5.1_GCC
-  ```
+    ```
+    cd ~
+    mkdir R_3.5.1_GCC
+    ```
 5. Load the modules you want.
   - The latest version of R that NCF's R Studio uses is 3.5.1.
   - We also want to use the GCC compiler
-  ```
-  module load gcc/7.1.0-fasrc01 R/3.5.1-fasrc01
-  ```
+    ```
+    module load gcc/7.1.0-fasrc01 R/3.5.1-fasrc01
+    ```
 6. Export the path to your user package directory while keeping the path to all the packages arleady installed on NCF.
-  ```
-  export R_LIBS_USER=~/R_3.5.1_GCC:$R_LIBS_USER
-  ```
+    ```
+    export R_LIBS_USER=~/R_3.5.1_GCC:$R_LIBS_USER
+    ```
 7. Check to make sure it worked as expected.
-  ```
-  echo $R_LIBS_USER
-  ```
+    ```
+    echo $R_LIBS_USER
+    ```
   - You should see something like
     ```
     /users/jflournoy/R_3.5.1_GCC:/n/helmod/apps/centos7/Core/R_packages/3.5.1-fasrc01
     ```
 8. Run R:
-  ```
-  R
-  ```
+    ```
+    R
+    ```
 9. Install `lavaan`
     ```
     devtools::install_github('yrosseel/lavaan')
