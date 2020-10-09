@@ -36,7 +36,7 @@ Here are some [introductory slides](https://docs.google.com/presentation/d/1u9QS
     ```
     echo $R_LIBS_USER
     ```
-  - You should see something like
+    You should see something like
     ```
     /users/jflournoy/R_3.5.1_GCC:/n/helmod/apps/centos7/Core/R_packages/3.5.1-fasrc01
     ```
