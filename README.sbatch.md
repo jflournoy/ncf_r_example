@@ -2,7 +2,7 @@
 
 Now that you've your written and tested your code interactively with R Studio, you can return to the command line and submit the job to the SLURM cluster.
 
-1. Return to your terminal window, where you're logged into NCF.
+1. Return to your terminal window where you're logged into NCF.
   ![](img/terminal.png)
 2. Make sure you're in the correct directory that contains both the bash script and the R script. If you pulled this repository into your home directory, you can simply execute `cd ~/ncf_r_example`.
 3. Double check that the bash script is really the one you want to run: `cat batch_simulations.bash`. For longer files you could use `less batch_simulations.bash`.
