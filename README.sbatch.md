@@ -2,7 +2,7 @@
 
 Now that you've your written and tested your code interactively with R Studio, you can return to the command line and submit the job to the SLURM cluster.
 
-1. Return to your terminal window, where you're logged into NCF.
+1. Return to your terminal window where you're logged into NCF.
   ![](img/terminal.png)
 2. Make sure you're in the correct directory that contains both the bash script and the R script. If you pulled this repository into your home directory, you can simply execute `cd ~/ncf_r_example`.
 3. Double check that the bash script is really the one you want to run: `cat batch_simulations.bash`. For longer files you could use `less batch_simulations.bash`.
@@ -13,6 +13,6 @@ Now that you've your written and tested your code interactively with R Studio, y
   Submitted batch job 4335800
   ```
 5. To check its progress, run `sacct`, which gives you the status of all the jobs you've run today.
-6. To follow along the progress being printed to the log file (all the `message` commands you've written and other stuff), you can use `tail -f sims_example_*.out`. You can replace `*` with whatever the job number is if you want to be very specific.
+6. To follow along the progress being printed to the log file (all the `message` commands you've written and other stuff), you can use `tail -f sims_example_*.out`. You can replace `*` with whatever the job number is if you want to be very specific. To exit out of following the log file progress, hold down `ctrl` and press `c`.
 
-When the job finishes, you might want to return to your interactive R Studio session to visualize the results. I've put together an example of a script to do this in [visualize_results.Rmd](visualize_results.Rmd). When you open this file in R Studio, it may ask if you want to install packages that are necessary to use R Markdown files. You can say "yes".
+When the job finishes, you might want to return to your interactive R Studio session to visualize the results. I've put together an example of a script to do this in [visualize_results.Rmd](visualize_results.Rmd). When you try to knit this file in R Studio, it may ask if you want to install packages that are necessary to use R Markdown files. You can say "yes".
