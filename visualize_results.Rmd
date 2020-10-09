@@ -1,0 +1,60 @@
+---
+title: "Visualize Results"
+author: "You!"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    code_folding: hide
+---
+
+I've used some of my favorite options to compile this document. You can read all about the different options in [Yihui Xie's book](https://bookdown.org/yihui/rmarkdown/).
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+First we need to load the data, and `ggplot2` to create the plots.
+
+```{r}
+library(ggplot2)
+setwd('~/ncf_r_example')
+#Unlike `save.img` and `load`, the `saveRDS` and `readRDS` functions save a
+#single object to a file, and read back from that file into a variable using
+#whatever variable name you want to use.
+sim_df <- readRDS('simulation_results_01000.rds')
+```
+
+Let's inspect the data frame.
+
+```{r}
+knitr::kable(head(sim_df))
+```
+
+I think we need to add a column that specifies whether the p-value is < .05, and then summarize the proportion of results that are significant for each N.
+
+```{r}
+sim_df$is_sig <- sim_df$pvalue < .05
+sim_df_split <- split(x = sim_df, f = sim_df$N)
+sim_df_split_summary <- lapply(sim_df_split, function(d){
+  N <- d$N[[1]]
+  power <- mean(d$is_sig)
+  se <- sqrt( power * (1 - power) / dim(d)[[1]] )
+  upper <- min(power + qnorm(.975)*se, 1)
+  lower <- max(power + qnorm(.025)*se, 0)
+  return(data.frame(N = N, power = power, upper = upper, lower = lower))
+})
+sim_df_summary <- do.call(rbind, sim_df_split_summary)
+```
+
+And now we can plot it.
+
+```{r}
+ggplot(sim_df_summary, aes(x = N, y = power)) + 
+  geom_line(alpha = .5) + 
+  geom_point() + 
+  geom_linerange(aes(ymin = lower, ymax = upper)) + 
+  coord_cartesian(y = c(0, 1))+
+  theme_minimal()
+```

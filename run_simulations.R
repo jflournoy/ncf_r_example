@@ -20,37 +20,37 @@ if(Sys.getenv('SLURM_CPUS_ON_NODE') == '') {
   is_sbatch <- TRUE
 }
 
-#It can be helpful to send yourself little messages like this along the way.
-message('Running ', iters, ' iterations using ', ncpus, ' CPUs...')
-
 #Load the package we want to use.
 #If it doesn't exist, this will just exit with an error.
 library(lavaan) 
 
-#Run some example code if we're not running as a batch job.
-if(!is_sbatch){
-  #Create a fairly simple model to simulate data from. It's just a regression
-  #where X causes Y, and the intercept for Y is 0. We set all parameters
-  #explicitly. Check out the lavaan tutorial for more info:
-  #https://lavaan.ugent.be/tutorial/index.html
-  simple_regression_dgp <- '
-y ~ 0.5*x    #y is regressed on x with a coefficient of .5
+#It can be helpful to send yourself little messages like this along the way.
+message('Running ', iters, ' iterations using ', ncpus, ' CPUs...')
+
+#Create a fairly simple model to simulate data from. It's just a regression
+#where X causes Y, and the intercept for Y is 0. We set all parameters
+#explicitly. Check out the lavaan tutorial for more info:
+#https://lavaan.ugent.be/tutorial/index.html
+simple_regression_dgp <- '
+y ~ 0.2*x    #y is regressed on x with a coefficient of .2
 y ~ 50*1     #set the intercept of the regression to 50
 y ~~ 0.75*y  #the residual variance is 1 - .5^2 = .75 (to be on the standardized scale)
 x ~ 10*1     #set the mean of x to 10
 x ~~ 1*x     #variance of x is 1
 '
-  
-  #We need a model without the parameter constraints so we can fit it to the
-  #simulated data.
-  simple_regression <- '
+
+#We need a model without the parameter constraints so we can fit it to the
+#simulated data.
+simple_regression <- '
 y ~ x        #estimate the effect of x on y
 y ~ 1        #estimate the intercept
 y ~~ y       #estimate the residual
 x ~ 1        #estimate the mean of x
 x ~~ x       #estimate the variance of x
 '
-  
+
+#Run some example code if we're not running as a batch job.
+if(!is_sbatch){
   #I'm going to test one iteration of this to show how it works
   sim_data <- lavaan::simulateData(model = simple_regression_dgp, 
                                    model.type = 'sem', 
@@ -130,12 +130,23 @@ timing <- system.time({
 
 message('Finished simulations!')
 
-time_for_1k_in_mins <- timing['elapsed']/10*1000/60
-sprintf('It would take %.1f minutes for 1k iterations.', time_for_1k_in_mins)
+if(!is_sbatch){
+  time_for_1k_in_mins <- timing['elapsed']/10*1000/60
+  message(sprintf('It would take %.1f minutes for 1k iterations.', time_for_1k_in_mins))
+} else {
+  print(timing)
+}
 
 #Now we can combine these into a data.frame and save them to a file we can
-#access later.
-sim_results_df <- do.call(rbind, sim_results_list)
+#access later. 
+message('Converting list into a data frame...')
+timing_df <- system.time({
+  #love to time everything that might take a little while.
+  sim_results_df <- do.call(rbind, sim_results_list)
+})
+
+message('Done converting.')
+print(timing_df)
 
 #Make a file name that contains the number of iterations. Be careful here, as
 #this will save in whatever your working directory is. When you run this as a

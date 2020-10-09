@@ -6,7 +6,7 @@
 #SBATCH --nodes 1
 #SBATCH --ntasks 1
 #SBATCH --time 1-00:00
-#SBATCH -o %x_%A_%a.out
+#SBATCH -o %x_%A.out
 #SBATCH --mail-type=ALL
 
 module load gcc/7.1.0-fasrc01
