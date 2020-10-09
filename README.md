@@ -12,7 +12,7 @@ Here are some [introductory slides](https://docs.google.com/presentation/d/1u9QS
     ```
     srun -p ncf -c 1 --mem 16G --time 4:00:00 --pty /bin/bash
     ```
-  You should see something like:
+    You should see something like:
     ```
     srun: job 4348303 queued and waiting for resources
     srun: job 4348303 has been allocated resources
