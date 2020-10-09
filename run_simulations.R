@@ -34,7 +34,7 @@ message('Running ', iters, ' iterations using ', ncpus, ' CPUs...')
 simple_regression_dgp <- '
 y ~ 0.2*x    #y is regressed on x with a coefficient of .2
 y ~ 50*1     #set the intercept of the regression to 50
-y ~~ 0.75*y  #the residual variance is 1 - .5^2 = .75 (to be on the standardized scale)
+y ~~ 0.96*y  #the residual variance is 1 - .2^2 = .96 (to be on the standardized scale)
 x ~ 10*1     #set the mean of x to 10
 x ~~ 1*x     #variance of x is 1
 '

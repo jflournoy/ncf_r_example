@@ -1,6 +1,6 @@
 ---
 title: "Visualize Results"
-author: "You!"
+author: "I'm the author!"
 date: "`r Sys.Date()`"
 output:
   html_document:
@@ -9,11 +9,20 @@ output:
     code_folding: hide
 ---
 
+
 I've used some of my favorite options to compile this document. You can read all about the different options in [Yihui Xie's book](https://bookdown.org/yihui/rmarkdown/).
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+# Introduction
+
+Across a range of sample sizes, we computed power to detect a regression effect that is equivalent to a correlation of Pearson's $r = .2$. This is the average effect size reported in the psychology literature (Funder & Ozer, 2019).
+
+# Setting up
+
+## Loading things
 
 First we need to load the data, and `ggplot2` to create the plots.
 
@@ -26,11 +35,15 @@ setwd('~/ncf_r_example')
 sim_df <- readRDS('simulation_results_01000.rds')
 ```
 
+## An inspection
+
 Let's inspect the data frame.
 
 ```{r}
 knitr::kable(head(sim_df))
 ```
+
+## Doing some things
 
 I think we need to add a column that specifies whether the p-value is < .05, and then summarize the proportion of results that are significant for each N.
 
@@ -48,13 +61,23 @@ sim_df_split_summary <- lapply(sim_df_split, function(d){
 sim_df_summary <- do.call(rbind, sim_df_split_summary)
 ```
 
+# The Plot
+
 And now we can plot it.
 
 ```{r}
 ggplot(sim_df_summary, aes(x = N, y = power)) + 
+  geom_hline(yintercept = .8, color = 'red', alpha = .5) + 
+  geom_hline(yintercept = .95, color = 'blue', alpha = .5) + 
   geom_line(alpha = .5) + 
   geom_point() + 
   geom_linerange(aes(ymin = lower, ymax = upper)) + 
+  scale_y_continuous(breaks = c(0, .25, .5, .8, .95, 1)) +
+  scale_x_continuous(breaks = unique(sim_df_summary$N)) + 
   coord_cartesian(y = c(0, 1))+
   theme_minimal()
 ```
+
+# References
+
+>Funder, D. C., & Ozer, D. J. (2019). Evaluating Effect Size in Psychological Research: Sense and Nonsense. Advances in Methods and Practices in Psychological Science, 2(2), 156–168. https://doi.org/10.1177/2515245919847202
