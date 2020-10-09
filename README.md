@@ -2,7 +2,7 @@ Here are some [introductory slides](https://docs.google.com/presentation/d/1u9QS
 
 # Getting R and R Studio set up on NCF
 
-1. Log into ncf using your favorite terminal empulator.
+1. Log into NCF using your favorite terminal emulator.
 2. Start an `srun` job so you can run R
   ```
   srun -p ncf -c 1 --mem 16G --time 4:00:00 --pty /bin/bash
