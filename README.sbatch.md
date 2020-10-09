@@ -14,3 +14,5 @@ Now that you've your written and tested your code interactively with R Studio, y
   ```
 5. To check its progress, run `sacct`, which gives you the status of all the jobs you've run today.
 6. To follow along the progress being printed to the log file (all the `message` commands you've written and other stuff), you can use `tail -f sims_example_*.out`. You can replace `*` with whatever the job number is if you want to be very specific.
+
+When the job finishes, you might want to return to your interactive R Studio session to visualize the results. I've put together an example of a script to do this in [visualize_results.Rmd](visualize_results.Rmd).
